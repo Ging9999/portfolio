@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>James Burton · Software Engineer</title>
+<meta name="description" content="James Burton, Computer Science student and Software Engineer Intern at Interact Software. AI engineering, backend performance and security. Based in the UK.">
+<meta name="author" content="James Burton">
+<meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://ging.uk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="James Burton · Software Engineer">
+<meta property="og:description" content="AI, backend and security engineering. Placement-year SWE intern, BSc Computer Science student.">
+<meta property="og:url" content="https://ging.uk/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0a'/%3E%3Ctext x='16' y='22.5' font-family='Arial' font-size='15' font-weight='900' text-anchor='middle' fill='%23fafafa'%3EJB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+  // Set theme before first paint to avoid a flash.
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem("theme"); } catch (e) {}
+    if (t !== "light" && t !== "dark") {
+      t = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<style>
+  /* Two raw inks; every surface is one on the other. Dark mode is an exact inversion. */
+  :root {
+    --ground: #fafafa;
+    --figure: #0a0a0a;
+    --muted-on-ground: #595959;
+    --muted-on-figure: #a3a3a3;
+    --hair-on-ground: #d6d6d6;
+    --hair-on-figure: #333333;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0a0a0a; --figure: #fafafa;
+      --muted-on-ground: #a3a3a3; --muted-on-figure: #595959;
+      --hair-on-ground: #2e2e2e; --hair-on-figure: #d6d6d6;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0a0a0a; --figure: #fafafa;
+    --muted-on-ground: #a3a3a3; --muted-on-figure: #595959;
+    --hair-on-ground: #2e2e2e; --hair-on-figure: #d6d6d6;
+    color-scheme: dark;
+  }
+  :root, body {
+    --bg: var(--ground);
+    --fg: var(--figure);
+    --muted: var(--muted-on-ground);
+    --hair: var(--hair-on-ground);
+  }
+  .invert {
+    --bg: var(--figure);
+    --fg: var(--ground);
+    --muted: var(--muted-on-figure);
+    --hair: var(--hair-on-figure);
+    background: var(--bg);
+    color: var(--fg);
+  }
+  :root {
+    --sans: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --max: 1180px;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; scrollbar-color: var(--figure) var(--ground); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg); caret-color: var(--fg);
+    font: 400 17px/1.6 var(--sans); font-stretch: 100%;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--fg); color: var(--bg); }
+  a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+  svg { display: block; }
+  h1, h2, h3, p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  .icon { width: 18px; height: 18px; flex: none; }
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 700px) { .wrap { padding: 0 32px; } }
+  [hidden] { display: none !important; }
+
+  .skip { position: absolute; left: -999px; top: 8px; z-index: 100; padding: 10px 14px; background: var(--fg); color: var(--bg); }
+  .skip:focus { left: 8px; }
+
+  /* ---------- Header ---------- */
+  header.site { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  header.site.scrolled { border-bottom-color: var(--fg); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+  .brand { font-weight: 800; font-stretch: 112%; font-size: 17px; letter-spacing: -0.01em; text-decoration: none; }
+  nav.primary ul { display: flex; gap: 24px; }
+  nav.primary a { font-size: 15px; font-weight: 500; text-decoration: none; padding: 6px 0; }
+  nav.primary a:hover, nav.primary a[aria-current="true"] { text-decoration: underline; text-decoration-thickness: 2px; }
+  .bar-actions { display: flex; gap: 6px; margin-left: 24px; }
+  .icon-btn {
+    display: inline-grid; place-items: center; width: 38px; height: 38px; padding: 0;
+    background: transparent; color: var(--fg); border: 1px solid var(--fg); cursor: pointer;
+    transition: background .18s var(--ease), color .18s var(--ease);
+  }
+  .icon-btn:hover { background: var(--fg); color: var(--bg); }
+  .menu-btn { display: none; }
+  [data-theme="dark"] .i-moon, [data-theme="light"] .i-sun { display: none; }
+  .nav-group { display: flex; align-items: center; }
+  @media (max-width: 759px) {
+    .menu-btn { display: inline-grid; }
+    nav.primary { position: absolute; top: 56px; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--fg); display: none; }
+    nav.primary.open { display: block; }
+    nav.primary ul { flex-direction: column; gap: 0; padding: 4px 16px 12px; }
+    nav.primary li + li { border-top: 1px solid var(--hair); }
+    nav.primary a { display: block; padding: 14px 0; font-size: 18px; }
+  }
+
+  /* ---------- Buttons ---------- */
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px;
+    font: 600 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+    background: transparent; color: var(--fg); border: 1.5px solid var(--fg);
+    transition: background .18s var(--ease), color .18s var(--ease);
+  }
+  .btn:hover { background: var(--fg); color: var(--bg); text-decoration: none; }
+  .btn.solid { background: var(--fg); color: var(--bg); }
+  .btn.solid:hover { background: transparent; color: var(--fg); }
+  .btn.sm { min-height: 38px; padding: 0 14px; font-size: 14px; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 40px 0 56px; }
+  @media (min-width: 960px) { .hero { padding: 72px 0 88px; } }
+  .hero h1 {
+    font-size: clamp(44px, 14vw, 6rem); line-height: 0.9; font-weight: 850; font-stretch: 125%;
+    letter-spacing: -0.035em; text-transform: uppercase;
+  }
+  .hero h1 span { display: block; }
+  .hero-body { display: grid; gap: 40px; margin-top: 36px; border-top: 2px solid var(--fg); padding-top: 28px; }
+  @media (min-width: 960px) { .hero-body { grid-template-columns: 1.1fr 1fr; gap: 64px; } }
+  .headline { font-size: clamp(21px, 3.2vw, 27px); font-weight: 650; font-stretch: 108%; line-height: 1.25; letter-spacing: -0.01em; }
+  .lede { margin-top: 14px; max-width: 34em; color: var(--muted); }
+  .hero .actions { margin-top: 28px; }
+
+  .facts { border-top: 1px solid var(--fg); }
+  .facts div { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--hair); }
+  .facts div:last-child { border-bottom-color: var(--fg); }
+  .facts dt { font-weight: 700; font-size: 15px; }
+  .facts dd { margin: 0; font-size: 16px; }
+  .facts dd small { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+  dl { margin: 0; }
+
+  /* ---------- Sections (spec-sheet rows) ---------- */
+  section.block { padding: 64px 0; }
+  @media (min-width: 960px) { section.block { padding: 96px 0; } }
+  .sheet { display: grid; gap: 24px; border-top: 2px solid var(--fg); padding-top: 20px; }
+  @media (min-width: 960px) { .sheet { grid-template-columns: 300px 1fr; gap: 40px; } }
+  .sheet > h2 {
+    font-size: clamp(34px, 5vw, 44px); line-height: 1; font-weight: 800; font-stretch: 110%; letter-spacing: -0.03em;
+  }
+  @media (min-width: 960px) { .sheet > h2 { position: sticky; top: 84px; align-self: start; } }
+
+  /* About */
+  .prose { max-width: 66ch; }
+  .prose p + p { margin-top: 16px; }
+  .prose .big { font-size: clamp(20px, 2.6vw, 24px); line-height: 1.4; font-weight: 500; letter-spacing: -0.01em; }
+  .focus { margin-top: 36px; display: grid; border-top: 1px solid var(--fg); }
+  @media (min-width: 700px) { .focus { grid-template-columns: repeat(3, 1fr); } }
+  .focus li { padding: 16px 0; border-bottom: 1px solid var(--hair); }
+  @media (min-width: 700px) { .focus li { padding: 16px 20px 16px 0; border-bottom: 0; } .focus li + li { padding-left: 20px; border-left: 1px solid var(--hair); } }
+  .focus strong { display: block; font-weight: 700; font-stretch: 108%; }
+  .focus span { color: var(--muted); font-size: 15px; }
+
+  /* Experience */
+  .jobs > li { display: grid; gap: 8px 32px; padding: 4px 0 36px; }
+  .jobs > li + li { border-top: 1px solid var(--hair); padding-top: 32px; }
+  @media (min-width: 700px) { .jobs > li { grid-template-columns: 130px 1fr; } }
+  .when { font-size: 14px; padding-top: 5px; }
+  .jobs h3 { font-size: 22px; font-weight: 750; font-stretch: 108%; letter-spacing: -0.015em; line-height: 1.25; }
+  .jobs .org { font-weight: 400; }
+  .role { color: var(--muted); font-size: 15px; margin-top: 2px; }
+  .points { margin-top: 14px; display: grid; gap: 8px; max-width: 66ch; }
+  .points li { position: relative; padding-left: 22px; }
+  .points li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 10px; height: 1.5px; background: var(--fg); }
+  .stack { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 13px; color: var(--muted); }
+  .stack li + li::before { content: "/"; padding: 0 8px; color: var(--hair); }
+
+  /* Projects register: the signature. Rows invert on hover and open to show detail. */
+  .register { border-top: 1px solid var(--fg); }
+  .register details { border-bottom: 1px solid var(--fg); }
+  .register summary {
+    list-style: none; cursor: pointer; display: grid; gap: 10px 24px; padding: 20px 12px;
+    grid-template-columns: 1fr auto;
+    transition: background .22s var(--ease), color .22s var(--ease);
+  }
+  .register summary::-webkit-details-marker { display: none; }
+  @media (min-width: 860px) { .register summary { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 120px 24px; align-items: center; } }
+  .register summary:hover, .register summary:focus-visible, .register details[open] > summary {
+    --bg: var(--figure); --fg: var(--ground); --muted: var(--muted-on-figure); --hair: var(--hair-on-figure);
+    background: var(--bg); color: var(--fg);
+  }
+  .register summary:focus-visible { outline-offset: -4px; outline-color: var(--bg); }
+  .p-name { font-size: clamp(22px, 3vw, 28px); font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; line-height: 1.15; }
+  .p-pitch { display: block; margin-top: 4px; font-size: 15px; color: var(--muted); font-weight: 400; font-stretch: 100%; letter-spacing: 0; line-height: 1.45; }
+  .p-stack { font-size: 13px; color: var(--muted); grid-column: 1 / -1; }
+  .p-status { font-size: 12px; white-space: nowrap; justify-self: start; padding: 5px 8px; border: 1px dashed currentColor; grid-row: 1; grid-column: 2; align-self: start; }
+  .p-status.done { border-style: solid; }
+  .p-toggle { display: none; }
+  @media (min-width: 860px) {
+    .p-stack { grid-column: auto; }
+    .p-status { grid-row: auto; grid-column: auto; align-self: center; }
+    .p-toggle { display: block; justify-self: end; transition: transform .3s var(--ease); }
+    details[open] .p-toggle { transform: rotate(45deg); }
+  }
+  .p-body { display: grid; gap: 20px; padding: 24px 12px 28px; }
+  @media (min-width: 860px) { .p-body { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 144px; gap: 24px; } }
+  .p-body .points { margin-top: 0; }
+  .p-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
+  .note { font-size: 13px; color: var(--muted); }
+  @media (min-width: 860px) { .p-links { grid-column: 2 / -1; } }
+
+  /* Skills */
+  .skills > div { display: grid; gap: 4px 32px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+  .skills > div:first-child { padding-top: 4px; }
+  .skills > div:last-child { border-bottom: 0; }
+  @media (min-width: 700px) { .skills > div { grid-template-columns: 160px 1fr; } }
+  .skills dt { font-weight: 700; font-stretch: 108%; }
+  .skills dd { margin: 0; }
+  .skills ul { display: flex; flex-wrap: wrap; }
+  .skills li + li::before { content: "/"; padding: 0 10px; color: var(--muted); }
+
+  /* Contact: the page's close, fully inverted */
+  .contact { padding: 72px 0 40px; }
+  @media (min-width: 960px) { .contact { padding: 112px 0 48px; } }
+  .contact h2 {
+    font-size: clamp(44px, 14vw, 6rem); line-height: 0.92; font-weight: 850; font-stretch: 125%;
+    letter-spacing: -0.035em; text-transform: uppercase;
+  }
+  .contact-body { display: grid; gap: 32px; margin-top: 32px; padding-top: 24px; border-top: 2px solid var(--fg); }
+  @media (min-width: 860px) { .contact-body { grid-template-columns: 1fr 1fr; gap: 64px; } }
+  .contact p { color: var(--muted); max-width: 44ch; }
+  .contact-links { display: grid; border-top: 1px solid var(--fg); }
+  .contact-links > * { border-bottom: 1px solid var(--fg); }
+  .c-row { display: flex; align-items: stretch; }
+  .c-link {
+    flex: 1; display: flex; align-items: center; gap: 14px; padding: 16px 10px; text-decoration: none;
+    font-size: 19px; font-weight: 650; font-stretch: 108%; background: none; border: 0; color: inherit; cursor: pointer; text-align: left;
+    transition: background .18s var(--ease), color .18s var(--ease);
+  }
+  .c-link:hover { background: var(--fg); color: var(--bg); }
+  .c-link small { display: block; font: 400 13px/1.4 var(--mono); color: var(--muted); }
+  .c-link:hover small { color: inherit; }
+  .c-copy { width: 64px; background: none; color: inherit; border: 0; border-left: 1px solid var(--hair); cursor: pointer; display: grid; place-items: center; transition: background .18s var(--ease), color .18s var(--ease); }
+  .c-copy:hover { background: var(--fg); color: var(--bg); }
+  footer.site { margin-top: 72px; padding-top: 16px; border-top: 1px solid var(--hair); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--muted); }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 16px); opacity: 0; pointer-events: none;
+    background: var(--fg); color: var(--bg); border: 1px solid var(--bg); padding: 10px 16px; font-size: 14px;
+    transition: opacity .2s var(--ease), transform .3s var(--ease);
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media print {
+    header.site, .actions, .p-links, .toast, .c-copy { display: none !important; }
+    .register details > .p-body { display: grid !important; }
+    section.block { padding: 24px 0; }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-github" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="miter"><rect x="2.5" y="4.5" width="19" height="15"/><path d="m2.5 5 9.5 8 9.5-8"/></g></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 20.5h16"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 4v15m0 0-6-6m6 6 6-6"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75"><rect x="8.5" y="8.5" width="12" height="12"/><path d="M15.5 8.5v-5h-12v12h5"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.75" d="M3 7h18M3 12h18M3 17h18"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site" id="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="James Burton, back to top">J. Burton</a>
+    <div class="nav-group">
+      <nav class="primary" id="nav" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="bar-actions">
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch between light and dark">
+          <svg class="icon i-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon i-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ================= HERO ================= -->
+  <section class="hero" aria-labelledby="name">
+    <div class="wrap">
+      <h1 id="name"><span>James</span><span>Burton</span></h1>
+      <div class="hero-body">
+        <div>
+          <p class="headline">Software Engineer. AI, backend &amp; security.</p>
+          <p class="lede">I build real systems end to end: AI assistants in production, a self-hosted AI tutoring platform, an encrypted publishing app, and a C++ physics engine from scratch.</p>
+          <div class="actions">
+            <a class="btn solid" href="#projects"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>View projects</a>
+            <a class="btn" data-link="cv" href="cv.pdf" download="James-Burton-CV.pdf"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download CV</a>
+            <a class="btn" data-link="github" href="#" target="_blank" rel="noopener" aria-label="GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/jamesburton05" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
+          </div>
+        </div>
+        <dl class="facts" aria-label="At a glance">
+          <div><dt>Now</dt><dd>Software Engineer Intern, Interact Software<small>Placement year · Manchester · <span class="mono">2026–2027</span></small></dd></div>
+          <div><dt>Degree</dt><dd>BSc Computer Science<small>Graduating <span class="mono">2028</span></small></dd></div>
+          <div><dt>Building</dt><dd>LearnWell, a self-hosted AI tutor<small>Founder · <span class="mono">2025</span>–present</small></dd></div>
+          <div><dt>Focus</dt><dd>AI engineering, backend performance, security</dd></div>
+          <div><dt>Based</dt><dd>United Kingdom</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="wrap sheet">
+      <h2 id="about-h">About</h2>
+      <div>
+        <div class="prose">
+          <p class="big">I'm a Computer Science undergraduate, currently on a placement year as a Software Engineer Intern at Interact Software in Manchester.</p>
+          <p>At Interact I work on a production AI assistant: making its Python backend faster, hardening the pipeline that lets it execute tools safely, and tightening data access across the AI layer and the C#/ASP.NET API. Outside work I run LearnWell, an AI tutoring platform for CS students that runs entirely on local models.</p>
+          <p>I like working close to the metal and close to the risk: I wrote a 3D physics engine with my own maths library rather than pulling in GLM, and an encrypted, tamper-evident publishing app for journalists. I care about systems that are fast, correct and hard to misuse.</p>
+        </div>
+        <ul class="focus" aria-label="Main interests">
+          <li><strong>AI engineering</strong><span>RAG, retrieval and LLM systems that run in production</span></li>
+          <li><strong>Backend performance</strong><span>Async Python, caching, vectorised compute, .NET APIs</span></li>
+          <li><strong>Security</strong><span>Applied cryptography, access control, safe tool execution</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="block" id="experience" aria-labelledby="exp-h">
+    <div class="wrap sheet">
+      <h2 id="exp-h">Experience</h2>
+      <ol class="jobs">
+        <li>
+          <p class="when mono">2026–2027</p>
+          <div>
+            <h3>Software Engineer Intern, <span class="org">Interact Software</span></h3>
+            <p class="role">Placement year · Manchester</p>
+            <ul class="points">
+              <li>Optimised an AI assistant's Python backend with asyncio parallelism, LLM client caching and vectorised NumPy retrieval.</li>
+              <li>Worked on the security and write-safety layer of the assistant's tool-execution pipeline.</li>
+              <li>Improved data access and privacy controls across the AI layer and the C#/ASP.NET API.</li>
+              <li>Built a full-stack admin feature end to end with React, C#/ASP.NET and SQL Server.</li>
+              <li>Tested with Docker and Azure DevOps CI pipelines.</li>
+            </ul>
+            <ul class="stack mono" aria-label="Technologies">
+              <li>Python</li><li>asyncio</li><li>NumPy</li><li>C#</li><li>ASP.NET</li><li>React</li><li>SQL Server</li><li>Docker</li><li>Azure DevOps</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <p class="when mono">2025–now</p>
+          <div>
+            <h3>Founder, <span class="org">LearnWell</span></h3>
+            <p class="role">Startup · AI tutoring for CS students</p>
+            <ul class="points">
+              <li>Built a Python/FastAPI backend that serves local LLMs through Ollama, with no cloud dependency.</li>
+              <li>Designed a RAG pipeline grounded in curriculum material across 20+ Computer Science topics.</li>
+            </ul>
+            <ul class="stack mono" aria-label="Technologies">
+              <li>Python</li><li>FastAPI</li><li>Ollama</li><li>RAG</li><li>LLMs</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="block" id="projects" aria-labelledby="proj-h">
+    <div class="wrap sheet">
+      <h2 id="proj-h">Projects</h2>
+      <div class="register">
+
+        <details open>
+          <summary>
+            <span class="p-name">PressChain<span class="p-pitch">Encrypted, tamper-evident publishing for journalists and their sources.</span></span>
+            <span class="p-stack mono">TypeScript · React · Electron · Solidity · IPFS</span>
+            <span class="p-status mono">In development</span>
+            <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
+          </summary>
+          <div class="p-body">
+            <ul class="points">
+              <li>AES-256-GCM end-to-end encryption with a self-custodial wallet.</li>
+              <li>IPFS storage anchored by Solidity smart contracts on an Ethereum L2.</li>
+              <li>Tor routing inside a cross-platform Electron app.</li>
+            </ul>
+            <ul class="stack mono" aria-label="Full stack"><li>Hardhat</li><li>ethers.js</li><li>Tor</li></ul>
+            <div class="p-links" data-repo="presschain" data-title="PressChain"></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="p-name">3D Physics Engine<span class="p-pitch">A real-time 3D physics sandbox built from scratch in C++.</span></span>
+            <span class="p-stack mono">C++17 · OpenGL · GLSL · CMake</span>
+            <span class="p-status mono">In development</span>
+            <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
+          </summary>
+          <div class="p-body">
+            <ul class="points">
+              <li>OpenGL renderer with custom GLSL shaders.</li>
+              <li>Hand-written maths library for vectors and matrices, no GLM.</li>
+              <li>Rigid-body dynamics in progress.</li>
+            </ul>
+            <div></div>
+            <div class="p-links" data-repo="physics" data-title="3D Physics Engine"></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="p-name">LearnWell<span class="p-pitch">AI tutoring for CS students on local models, with no cloud dependency.</span></span>
+            <span class="p-stack mono">Python · FastAPI · Ollama · RAG</span>
+            <span class="p-status mono">Active</span>
+            <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
+          </summary>
+          <div class="p-body">
+            <ul class="points">
+              <li>FastAPI backend serving local LLMs via Ollama.</li>
+              <li>RAG pipeline grounded in curriculum material for 20+ CS topics.</li>
+              <li>Self-hosted end to end, with no third-party AI APIs.</li>
+            </ul>
+            <div></div>
+            <div class="p-links" data-repo="learnwell" data-title="LearnWell"></div>
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span class="p-name">Employee Recognition API<span class="p-pitch">A RESTful rewards API with leaderboards and department stats.</span></span>
+            <span class="p-stack mono">C# · ASP.NET Core · EF Core · SQLite</span>
+            <span class="p-status mono done">Complete</span>
+            <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
+          </summary>
+          <div class="p-body">
+            <ul class="points">
+              <li>Layered design: dependency injection, service layer, async controllers.</li>
+              <li>Leaderboards and department stats with LINQ aggregation.</li>
+              <li>Covered by xUnit tests.</li>
+            </ul>
+            <ul class="stack mono" aria-label="Full stack"><li>xUnit</li></ul>
+            <div class="p-links" data-repo="recognition" data-title="Employee Recognition API"></div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="wrap sheet">
+      <h2 id="skills-h">Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd><ul><li>Python</li><li>C#</li><li>TypeScript</li><li>Java</li><li>C/C++</li><li>SQL</li><li>Solidity</li></ul></dd></div>
+        <div><dt>Frameworks</dt><dd><ul><li>ASP.NET Core</li><li>Entity Framework Core</li><li>React</li><li>Electron</li><li>FastAPI</li><li>NumPy</li><li>xUnit</li></ul></dd></div>
+        <div><dt>AI</dt><dd><ul><li>LLMs</li><li>RAG</li><li>Embeddings</li><li>Vector databases</li><li>BM25</li><li>Prompt engineering</li></ul></dd></div>
+        <div><dt>Security</dt><dd><ul><li>AES-GCM</li><li>scrypt</li><li>End-to-end encryption</li><li>Tor</li></ul></dd></div>
+        <div><dt>Databases</dt><dd><ul><li>SQL Server (T-SQL)</li><li>SQLite</li></ul></dd></div>
+        <div><dt>DevOps &amp; tools</dt><dd><ul><li>Git</li><li>Docker</li><li>Azure DevOps</li><li>TeamCity</li><li>Octopus Deploy</li><li>Linux</li><li>Proxmox</li></ul></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="contact invert" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 id="contact-h">Let's<br>talk</h2>
+      <div class="contact-body">
+        <p>I'm interested in software engineering internships and graduate roles in the UK, especially in AI, backend and security. Email is the fastest way to reach me.</p>
+        <div class="contact-links">
+          <div class="c-row" id="email-row" hidden>
+            <button class="c-link" type="button" id="email-open">
+              <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+              <span>Email me<small>Opens your mail app</small></span>
+            </button>
+            <button class="c-copy" type="button" id="email-copy" aria-label="Copy email address"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></button>
+          </div>
+          <a class="c-link" href="https://www.linkedin.com/in/jamesburton05" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>
+            <span>LinkedIn<small>in/jamesburton05</small></span>
+          </a>
+          <a class="c-link" data-link="github" href="#" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>
+            <span>GitHub<small data-github-label></small></span>
+          </a>
+        </div>
+      </div>
+      <footer class="site">
+        <span>© <span id="year">2026</span> James Burton</span>
+        <a href="#top">Back to top</a>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* =====================================================
+     EDIT HERE: links. Leave a value empty ("") to hide it.
+     ===================================================== */
+  var LINKS = {
+    github: "https://github.com/Ging9999",
+    cv: "cv.pdf",          // put cv.pdf next to index.html, or paste a full URL
+    repos: {               // per-project "View code" buttons
+      presschain: "",
+      physics: "",
+      learnwell: "",
+      recognition: ""
+    }
+  };
+
+  (function () {
+    var root = document.documentElement;
+
+    // Theme toggle
+    document.getElementById("theme").addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+
+    // Fill or hide configurable links
+    document.querySelectorAll('[data-link="github"]').forEach(function (a) {
+      if (LINKS.github) a.href = LINKS.github; else a.hidden = true;
+    });
+    var gl = document.querySelector("[data-github-label]");
+    if (gl && LINKS.github) gl.textContent = LINKS.github.replace(/^https?:\/\/(www\.)?/, "");
+    document.querySelectorAll('[data-link="cv"]').forEach(function (a) {
+      if (LINKS.cv) a.href = LINKS.cv; else a.hidden = true;
+    });
+    document.querySelectorAll("[data-repo]").forEach(function (el) {
+      var url = LINKS.repos[el.getAttribute("data-repo")];
+      if (url) {
+        var a = document.createElement("a");
+        a.className = "btn sm"; a.target = "_blank"; a.rel = "noopener"; a.href = url;
+        a.setAttribute("aria-label", "View code for " + el.getAttribute("data-title") + " on GitHub");
+        a.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>View code';
+        el.appendChild(a);
+      } else {
+        el.innerHTML = '<span class="note mono">Code available on request</span>';
+      }
+    });
+
+    // Email: assembled only when used, so the address never sits in the page source.
+    var parts = ["5002notrubesemaj", "moc.liamg"];
+    function address() { return parts.map(function (p) { return p.split("").reverse().join(""); }).join("@"); }
+    document.getElementById("email-row").hidden = false;
+    document.getElementById("email-open").addEventListener("click", function () {
+      window.location.href = "mailto:" + address();
+    });
+
+    var toast = document.getElementById("toast"), tId;
+    function showToast(msg) {
+      toast.textContent = msg; toast.classList.add("show");
+      clearTimeout(tId); tId = setTimeout(function () { toast.classList.remove("show"); }, 2000);
+    }
+    document.getElementById("email-copy").addEventListener("click", function () {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(address()).then(function () { showToast("Email address copied"); }, function () { showToast(address()); });
+      } else { showToast(address()); }
+    });
+
+    // Mobile menu
+    var menu = document.getElementById("menu"), nav = document.getElementById("nav");
+    function setMenu(open) {
+      nav.classList.toggle("open", open);
+      menu.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+    menu.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
+    nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+
+    // Header rule on scroll
+    var header = document.querySelector("header.site");
+    function onScroll() { header.classList.toggle("scrolled", window.scrollY > 8); }
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+    // Active nav link
+    if ("IntersectionObserver" in window) {
+      var links = {};
+      nav.querySelectorAll("a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); });
+            if (links[en.target.id]) links[en.target.id].setAttribute("aria-current", "true");
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px" });
+      document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  })();
+</script>
+<noscript><style>#email-row{display:none!important}</style></noscript>
+</body>
+</html>
