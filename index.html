@@ -542,10 +542,10 @@
      ===================================================== */
   var LINKS = {
     github: "https://github.com/Ging9999",
-    repos: {               // per-project "View code" buttons
+    repos: {               // per-project "View code" buttons; "private" shows a private note
       presschain: "https://github.com/Ging9999/presschain",
       physics: "https://github.com/Ging9999/physics-engine",
-      learnwell: ""
+      learnwell: "private"
     }
   };
 
@@ -567,7 +567,9 @@
     if (gl && LINKS.github) gl.textContent = LINKS.github.replace(/^https?:\/\/(www\.)?/, "");
     document.querySelectorAll("[data-repo]").forEach(function (el) {
       var url = LINKS.repos[el.getAttribute("data-repo")];
-      if (url) {
+      if (url === "private") {
+        el.innerHTML = '<span class="note mono">Private repository · in active development</span>';
+      } else if (url) {
         var a = document.createElement("a");
         a.className = "btn sm"; a.target = "_blank"; a.rel = "noopener"; a.href = url;
         a.setAttribute("aria-label", "View code for " + el.getAttribute("data-title") + " on GitHub");
