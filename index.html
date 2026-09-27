@@ -228,6 +228,8 @@
   .p-body { display: grid; gap: 20px; padding: 24px 12px 28px; }
   @media (min-width: 860px) { .p-body { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 144px; gap: 24px; } }
   .p-body .points { margin-top: 0; }
+  .p-media { grid-column: 1 / -1; margin: 0; border: 1px solid var(--fg); background: #000; }
+  .p-media video { display: block; width: 100%; height: auto; aspect-ratio: 960 / 542; }
   .p-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-start; }
   .note { font-size: 13px; color: var(--muted); }
   @media (min-width: 860px) { .p-links { grid-column: 2 / -1; } }
@@ -440,10 +442,16 @@
             <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
           </summary>
           <div class="p-body">
+            <figure class="p-media">
+              <video muted loop playsinline preload="none" poster="media/physics-engine.jpg" width="960" height="542" aria-label="Screen recording of the physics engine: boxes falling and colliding on a chequered floor, and a blue fluid simulation splashing across it">
+                <source src="media/physics-engine.mp4" type="video/mp4">
+              </video>
+            </figure>
             <ul class="points">
-              <li>OpenGL renderer with custom GLSL shaders.</li>
-              <li>Hand-written maths library for vectors and matrices, no GLM.</li>
-              <li>Rigid-body dynamics in progress.</li>
+              <li>Rigid bodies with impulse-based collisions, restitution and Coulomb friction.</li>
+              <li>SPH fluid simulation, with a spatial hash grid for neighbour search.</li>
+              <li>Height-field water with propagating waves, splashes and buoyancy.</li>
+              <li>OpenGL renderer with custom GLSL shaders, real-time shadows and a hand-written maths library (no GLM).</li>
             </ul>
             <div></div>
             <div class="p-links" data-repo="physics" data-title="3D Physics Engine"></div>
@@ -599,6 +607,24 @@
       if (navigator.clipboard) {
         navigator.clipboard.writeText(address()).then(function () { showToast("Email address copied"); }, function () { showToast(address()); });
       } else { showToast(address()); }
+    });
+
+    // Project clips: play from the start when a row opens, pause when it closes.
+    // With reduced motion, show controls instead of autoplaying.
+    var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".register details").forEach(function (d) {
+      var v = d.querySelector(".p-media video");
+      if (!v) return;
+      if (reduceMotion) { v.controls = true; return; }
+      d.addEventListener("toggle", function () {
+        if (d.open) {
+          v.currentTime = 0;
+          var p = v.play();
+          if (p && p.catch) p.catch(function (e) { if (e && e.name === "NotAllowedError") v.controls = true; });
+        } else {
+          v.pause();
+        }
+      });
     });
 
     // Mobile menu
