@@ -339,7 +339,7 @@
       <div class="hero-body">
         <div>
           <p class="headline">Software Engineer. AI, backend &amp; security.</p>
-          <p class="lede">I build real systems end to end: AI assistants in production, a self-hosted AI tutoring platform, an encrypted publishing app, and a C++ physics engine from scratch.</p>
+          <p class="lede">I build real systems end to end: AI assistants in production, a local-first AI tutoring app, an encrypted publishing app, and a C++ physics engine from scratch.</p>
           <div class="actions">
             <a class="btn solid" href="#projects"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>View projects</a>
             <a class="btn" data-link="github" href="#" target="_blank" rel="noopener" aria-label="GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
@@ -349,7 +349,7 @@
         <dl class="facts" aria-label="At a glance">
           <div><dt>Now</dt><dd>Software Engineer Intern, Interact Software<small>Placement year · Manchester · <span class="mono">2026–2027</span></small></dd></div>
           <div><dt>Degree</dt><dd>BSc Computer Science<small>Graduating <span class="mono">2028</span></small></dd></div>
-          <div><dt>Building</dt><dd>LearnWell, a self-hosted AI tutor<small>Founder · <span class="mono">2025</span>–present</small></dd></div>
+          <div><dt>Building</dt><dd>LearnWell, a local-first AI tutor<small>Founder · <span class="mono">2025</span>–present</small></dd></div>
           <div><dt>Focus</dt><dd>AI engineering, backend performance, security</dd></div>
           <div><dt>Based</dt><dd>United Kingdom</dd></div>
         </dl>
@@ -364,7 +364,7 @@
       <div>
         <div class="prose">
           <p class="big">I'm a Computer Science undergraduate, currently on a placement year as a Software Engineer Intern at Interact Software in Manchester.</p>
-          <p>At Interact I work on a production AI assistant: making its Python backend faster, hardening the pipeline that lets it execute tools safely, and tightening data access across the AI layer and the C#/ASP.NET API. Outside work I run LearnWell, an AI tutoring platform for CS students that runs entirely on local models.</p>
+          <p>At Interact I work on a production AI assistant: making its Python backend faster, hardening the pipeline that lets it execute tools safely, and tightening data access across the AI layer and the C#/ASP.NET API. Outside work I build LearnWell, an AI tutoring app for CS students that works with local or cloud models and keeps everything on your machine.</p>
           <p>I like working close to the metal and close to the risk: I wrote a 3D physics engine with my own maths library rather than pulling in GLM, and an encrypted, tamper-evident publishing app for journalists. I care about systems that are fast, correct and hard to misuse.</p>
         </div>
         <ul class="focus" aria-label="Main interests">
@@ -402,13 +402,14 @@
           <p class="when mono">2025–now</p>
           <div>
             <h3>Founder, <span class="org">LearnWell</span></h3>
-            <p class="role">Startup · AI tutoring for CS students</p>
+            <p class="role">Startup · AI tutoring app for CS students</p>
             <ul class="points">
-              <li>Built a Python/FastAPI backend that serves local LLMs through Ollama, with no cloud dependency.</li>
-              <li>Designed a RAG pipeline grounded in curriculum material across 20+ Computer Science topics.</li>
+              <li>Built a Next.js and Electron app that tutors through local models (Ollama) or cloud APIs (OpenAI, Anthropic, Gemini), with all data kept in local SQLite.</li>
+              <li>Generated an offline curriculum of 48 topics across five tracks, with highlight-to-ask, quizzes with weakness analysis and a voice mode.</li>
+              <li>Added coding practice: problems run in the browser (Pyodide for Python, plus JavaScript) or natively through Electron.</li>
             </ul>
             <ul class="stack mono" aria-label="Technologies">
-              <li>Python</li><li>FastAPI</li><li>Ollama</li><li>RAG</li><li>LLMs</li>
+              <li>TypeScript</li><li>Next.js</li><li>Electron</li><li>Prisma</li><li>SQLite</li><li>Ollama</li><li>LLM APIs</li>
             </ul>
           </div>
         </li>
@@ -449,7 +450,7 @@
           </summary>
           <div class="p-body">
             <figure class="p-media">
-              <video muted loop playsinline preload="none" poster="media/physics-engine.jpg" width="960" height="542" aria-label="Screen recording of the physics engine: boxes falling and colliding on a chequered floor, and a blue fluid simulation splashing across it">
+              <video muted loop playsinline preload="none" poster="media/physics-engine.jpg" width="960" height="542" aria-label="Screen recording of the physics engine: boxes falling and colliding on a chequered floor, and a blue water surface splashing around them">
                 <source src="media/physics-engine.mp4" type="video/mp4">
               </video>
             </figure>
@@ -466,16 +467,16 @@
 
         <details>
           <summary>
-            <span class="p-name">LearnWell<span class="p-pitch">AI tutoring for CS students on local models, with no cloud dependency.</span></span>
-            <span class="p-stack mono">Python · FastAPI · Ollama · RAG</span>
+            <span class="p-name">LearnWell<span class="p-pitch">An AI tutor for CS students that runs on local or cloud models and works offline.</span></span>
+            <span class="p-stack mono">TypeScript · Next.js · Electron · Prisma</span>
             <span class="p-status mono">Active</span>
             <svg class="icon p-toggle" aria-hidden="true"><use href="#i-plus"/></svg>
           </summary>
           <div class="p-body">
             <ul class="points">
-              <li>FastAPI backend serving local LLMs via Ollama.</li>
-              <li>RAG pipeline grounded in curriculum material for 20+ CS topics.</li>
-              <li>Self-hosted end to end, with no third-party AI APIs.</li>
+              <li>Chat with local models through Ollama, or with OpenAI, Anthropic and Gemini; conversations and keys stay in local SQLite.</li>
+              <li>Offline curriculum of 48 topics in five tracks, with highlight-to-ask and quizzes that pinpoint weak spots.</li>
+              <li>Coding practice with in-browser Python (Pyodide) and JavaScript runners.</li>
             </ul>
             <div></div>
             <div class="p-links" data-repo="learnwell" data-title="LearnWell"></div>
@@ -492,7 +493,7 @@
       <h2 id="skills-h">Skills</h2>
       <dl class="skills">
         <div><dt>Languages</dt><dd><ul><li>Python</li><li>C#</li><li>TypeScript</li><li>Java</li><li>C/C++</li><li>SQL</li><li>Solidity</li></ul></dd></div>
-        <div><dt>Frameworks</dt><dd><ul><li>ASP.NET Core</li><li>Entity Framework Core</li><li>React</li><li>Electron</li><li>FastAPI</li><li>NumPy</li><li>xUnit</li></ul></dd></div>
+        <div><dt>Frameworks</dt><dd><ul><li>ASP.NET Core</li><li>Entity Framework Core</li><li>React</li><li>Electron</li><li>Next.js</li><li>Prisma</li><li>FastAPI</li><li>NumPy</li><li>xUnit</li></ul></dd></div>
         <div><dt>AI</dt><dd><ul><li>LLMs</li><li>RAG</li><li>Embeddings</li><li>Vector databases</li><li>BM25</li><li>Prompt engineering</li></ul></dd></div>
         <div><dt>Security</dt><dd><ul><li>AES-GCM</li><li>scrypt</li><li>End-to-end encryption</li><li>Tor</li></ul></dd></div>
         <div><dt>Databases</dt><dd><ul><li>SQL Server (T-SQL)</li><li>SQLite</li></ul></dd></div>
