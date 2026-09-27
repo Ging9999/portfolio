@@ -334,7 +334,6 @@
           <p class="lede">I build real systems end to end: AI assistants in production, a self-hosted AI tutoring platform, an encrypted publishing app, and a C++ physics engine from scratch.</p>
           <div class="actions">
             <a class="btn solid" href="#projects"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>View projects</a>
-            <a class="btn" data-link="cv" href="cv.pdf" download="James-Burton-CV.pdf"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download CV</a>
             <a class="btn" data-link="github" href="#" target="_blank" rel="noopener" aria-label="GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/jamesburton05" target="_blank" rel="noopener" aria-label="LinkedIn profile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn</a>
           </div>
@@ -546,7 +545,6 @@
      ===================================================== */
   var LINKS = {
     github: "https://github.com/Ging9999",
-    cv: "cv.pdf",          // put cv.pdf next to index.html, or paste a full URL
     repos: {               // per-project "View code" buttons
       presschain: "",
       physics: "",
@@ -571,9 +569,6 @@
     });
     var gl = document.querySelector("[data-github-label]");
     if (gl && LINKS.github) gl.textContent = LINKS.github.replace(/^https?:\/\/(www\.)?/, "");
-    document.querySelectorAll('[data-link="cv"]').forEach(function (a) {
-      if (LINKS.cv) a.href = LINKS.cv; else a.hidden = true;
-    });
     document.querySelectorAll("[data-repo]").forEach(function (el) {
       var url = LINKS.repos[el.getAttribute("data-repo")];
       if (url) {
